@@ -14,10 +14,18 @@ describe Airport do
         expect(subject.take_off_plane).to eq(plane)
     end
     
-    it 'should not allow plane to take off in stormy weather' do
+    it 'should raise an error if weather is stormy before plane takes off' do
         plane = Plane.new
         subject.land_plane(plane)
+        weather = Weather.new
         expect(subject.take_off_plane).to raise_error("Plane cannot take off in stormy weather")
+    end
+    
+    it 'should raise an error saying that the airport is full' do
+        plane = Plane.new
+        plane2 = Plane.new
+        subject.land_plane(plane)
+        expect(subject.land_plane(plane2)).to raise_error "Airport is full"
     end
     
 end

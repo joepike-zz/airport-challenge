@@ -1,3 +1,4 @@
+require 'weather'
 
 class Airport
     
@@ -10,7 +11,7 @@ class Airport
     end
     
     def take_off_plane
-        raise "Plane cannot take off in stormy weather"
+        raise "Plane cannot take off in stormy weather" if !weather?
         @planes.pop
     end
     
