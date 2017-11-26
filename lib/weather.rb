@@ -4,7 +4,7 @@ class Weather
         @weather = Random.new.rand(1..10)
     end
     
-    def weather?
+    def weather_state?
         if @weather.between?(1, 9)
             @weather = true
         else
