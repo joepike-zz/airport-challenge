@@ -1,26 +1,22 @@
 require 'weather'
 
 class Airport
-    
-    def initialize(capacity = 1)
-        @planes = []
+
+    def initialize(weather = Weather.new, capacity = 1)
+        @airport = []
         @capacity = capacity
-        @weather = Weather.new
+        @weather = weather
     end
-    
+
     def land_plane(plane)
-        raise "Airport is full" if @planes.count == @capacity
-        @planes << plane
+        raise "Airport is full" if @airport.count == @capacity
+        raise "Plane cannot land in stormy weather" if @weather.stormy? == true
+        @airport << plane
     end
-    
+
     def take_off_plane
-        raise "Plane cannot take off in stormy weather" if !@weather
-        @planes.pop
+        raise "Plane cannot take off in stormy weather" if @weather.stormy?
+        @airport.pop
     end
-    
-    def get_weather
-        @weather = Weather.new
-        @weather.weather_state?
-    end
-    
+
 end

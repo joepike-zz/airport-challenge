@@ -1,14 +1,10 @@
 
 class Weather
-    def initialize
-        @weather = Random.new.rand(1..10)
+
+    attr_reader :stormy
+
+    def stormy?
+      rand(10) == 1 ? true : false
     end
-    
-    def weather_state?
-        if @weather.between?(1, 9)
-            @weather = true
-        else
-            @weather = false
-        end
-    end
+
 end
