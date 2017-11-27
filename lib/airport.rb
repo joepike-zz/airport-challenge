@@ -14,13 +14,13 @@ class Airport
     end
     
     def take_off_plane
-        raise "Plane cannot take off in stormy weather" if !@weather.weather_state?
+        raise "Plane cannot take off in stormy weather" if !@weather
         @planes.pop
     end
     
     def get_weather
-        @current_weather = Weather.new
-        
+        @weather = Weather.new
+        @weather.weather_state?
     end
     
 end

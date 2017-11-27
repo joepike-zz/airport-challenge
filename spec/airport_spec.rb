@@ -17,8 +17,14 @@ describe Airport do
     it 'should raise an error if weather is stormy before plane takes off' do
         plane = Plane.new
         subject.land_plane(plane)
-        weather = double(:weather, weather_state?: false)
+        weather = double(:weather, get_weather: false)
+        subject.get_weather
         expect(subject.take_off_plane).to raise_error("Plane cannot take off in stormy weather")
+    end
+    
+    it 'should raise an error before plane tries to land in stormy weather' do
+        plane = Plane.new
+        weather
     end
     
     it 'should raise an error saying that the airport is full' do
